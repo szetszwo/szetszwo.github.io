@@ -1,0 +1,9 @@
+BODY {color: black; background: white}
+
+A:link { color: black }
+A:visited { color: grey }
+A:active { color: grey }
+
+EM {color: red; font: bold 14pt "Times New Roman", serif}
+
+CODE {color: #008888; font-family: "Courier New", "Courier", "mono"}

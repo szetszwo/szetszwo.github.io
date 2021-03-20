@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+  <TITLE>SZE, Tsz Wo (Nicholas)</TITLE>
+  <LINK REL="ICON" HREF="./icons/sze.ico" />
+  <LINK REL="SHORTCUT ICON" HREF="./icons/sze.ico" />
+  <LINK REL="stylesheet" HREF="apache.css" TYPE="text/css" />
+</HEAD>
+
+<body>
+<h2>Computing &pi; with Hadoop</h2>
+<p><em>The results below are obsoleted.
+Please see 
+<a href="http://arxiv.org/abs/1008.3171">arXiv:1008.3171</a>
+for the latest results.
+</em></p>
+<table cellpadding=10><tr valign=top><td width=420>
+<p>
+I used <a href="http://hadoop.apache.org/">Hadoop</a> in Yahoo! to compute &pi;,
+more specifically,
+the <i>n</i><sup>th</sup> bit of &pi;.
+A map-reduce program, called 
+<a href="http://svn.apache.org/viewvc/hadoop/mapreduce/trunk/src/examples/org/apache/hadoop/examples/pi/DistBbp.java?view=annotate"><i>distbbp</i></a>,
+was developed for such purpose.
+It has been
+<a href="https://issues.apache.org/jira/browse/MAPREDUCE-637">checked in</a>
+to Hadoop 0.21 as an example program,
+so that the entire program is publicly available.
+The results are shown in the table on the right.
+</p>
+<ul>
+<li>
+Except for the first and the last rows,
+bits starting at positions <i>n</i>–4 and <i>n</i>+4 are also computed 
+for the sake of correctness.</li>
+<p><li>Row 0 to Row 7
+<ul><li>They were computed by a single machine.</li>
+    <li>A single run of Row 7 took several seconds.</li>
+</ul></li></p>
+<p><li>Row 8 to Row 14
+<ul><li>They were computed by a 7600-CPU-core cluster.</li>
+    <li>A single run of Row 14 took 27 hours.</li>
+    <li>The computations in Row 13 and Row 14 were completed on May 20, 2009. 
+        It seems that the corresponding bits were never computed before.</li>
+</ul></li></p>
+<p><li>The first part of Row 15 (<tt>6216B06</tt>)
+<ul><li>The first 30% of the computation was done in idle cycles of some 
+        clusters spread over 20 days.</li>
+    <li>The remaining 70% was finished over a weekend on <i>Hammer</i>,
+        a 30,000-CPU-core cluster, which was also used for the
+        <a href="http://developer.yahoo.net/blogs/hadoop/2009/05/hadoop_sorts_a_petabyte_in_162.html">petabyte sort benchmark</a>.</li>
+    <li>The log files are available
+        <a href="https://issues.apache.org/jira/secure/attachment/12408543/1e15log.zip">here</a>.</li>
+    <li>The result was posted in
+        <a href="http://developer.yahoo.net/blogs/hadoop/2009/05/hadoop_computes_the_10151st_bi.html">this YDN blog</a>.</li>
+</ul></li></p>
+<p><li>The second part of Row 15 (<tt>D3611</tt>)
+<ul><li>The starting position is 1,000,000,000,000,053, totally 20 bits.</li>
+    <li>Two computations, at positions <i>n</i> and <i>n</i>+4, were performed.
+    <li>A single computation was divided into 14,000 jobs
+        and totally 7,000,000 tasks.
+        It took 208 years of CPU-time
+        or 12 days of cluster (with 7600-CPU-core) time.  </li>
+    <li>The log files are available
+        <a href="https://issues.apache.org/jira/secure/attachment/12412297/D3611.tar.gz">here</a>.</li>
+    <li>The computations were completed on June 30, 2009.
+        The last bit, the 1,000,000,000,000,072<sup>nd</sup> bit,
+        probably is the highest bit (or the least significant bit) of &pi;
+        computed at that time.</li>
+</ul></li></p>
+
+</td><td>
+<table border=1 width=400 cellpadding=5>
+<tr><th width=30></th><th>Position <i>n</i></th><th>&pi; bits (in hex) starting at <i>n</i></th></tr>
+<tr><td align=right>0</td><td align=right>1</td><td><tt>243F6A8885A3</tt><sup>*</sup></td></tr>
+<tr><td align=right>1</td><td align=right>11</td><td><tt>FDAA22168C23</tt></td></tr>
+<tr><td align=right>2</td><td align=right>101</td><td><tt>3707344A409</tt></td></tr>
+<tr><td align=right>3</td><td align=right>1,001</td><td><tt>574E69A458F</tt></td></tr>
+<tr><td align=right>4</td><td align=right>10,001</td><td><tt>44EC5716F2B</tt></td></tr>
+<tr><td align=right>5</td><td align=right>100,001</td><td><tt>944F7A204</tt></td></tr>
+<tr><td align=right>6</td><td align=right>1,000,001</td><td><tt>6FFFA4103</tt></td></tr>
+<tr><td align=right>7</td><td align=right>10,000,001</td><td><tt>6CFDD54E3</tt></td></tr>
+<tr><td align=right>8</td><td align=right>100,000,001</td><td><tt>A306CFA7</tt></td></tr>
+<tr><td align=right>9</td><td align=right>1,000,000,001</td><td><tt>3E08FF2B</tt></td></tr>
+<tr><td align=right>10</td><td align=right>10,000,000,001</td><td><tt>0A8BD8C0</tt></td></tr>
+<tr><td align=right>11</td><td align=right>100,000,000,001</td><td><tt>B2238C1</tt></td></tr>
+<tr><td align=right>12</td><td align=right>1,000,000,000,001</td><td><tt>0FEE563</tt></td></tr>
+<tr><td align=right>13</td><td align=right>10,000,000,000,001</td><td><tt>896DC3</tt></td></tr>
+<tr><td align=right>14</td><td align=right>100,000,000,000,001</td><td><tt>C216EC</tt></td></tr>
+<tr><td align=right>15</td><td align=right>1,000,000,000,000,001</td><td><tt>6216B06</tt> ... <tt>D3611</tt></td></tr>
+</table>
+
+<p><sup>*</sup>
+By representing &pi; in decimal, hexadecimal and binary, we have
+<ul><table><tr>
+  <td>&pi;</td><td>=</td><td><tt>3.1415926535 8979323846 2643383279</tt> ...</td>
+</tr><tr>
+  <td></td><td>=</td><td><tt>3.243F6A8885 A308D31319 8A2E037073</tt> ...</td>
+</tr><tr>
+  <td></td><td>=</td><td><tt>11.0010010000 1111110110 1010100010</tt> ...</td>
+</td></tr></table></ul>
+The first ten bits of &pi; are <tt>0010010000</tt>.
+</p>
+</td></tr></table>
+<tt>2009.5.20</tt>
+</body>
+</html>

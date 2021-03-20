@@ -1,0 +1,26 @@
+BODY {color: black; background: white}
+
+A:link { color: black }
+A:visited { color: grey }
+A:active { color: grey }
+
+EM {color: red; font: bold 14pt "Times New Roman", serif}
+
+table.W800C { width:800px; margin-left: auto; margin-right: auto; }
+
+td { text-align: left }
+td.W20 { width:20px }
+td.W40 { width:40px }
+td.W100 { width:100px }
+td.W400 { width:400px }
+
+tt.UNDERLINE { text-decoration:underline }
+
+hr.W400LEFT { width:400px; margin-left: 0pt; }
+
+p.CENTER { text-align: center }
+p.RIGHT { text-align: right }
+
+div.UNDERLINE {font: underline}
+
+CODE {color: #008888; font-family: "Courier New", "Courier", "mono"}
